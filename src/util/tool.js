@@ -31,16 +31,25 @@ export function GetQueryString(name) {
   return null
 }
 
-// 跳转到登录页面
-export function JumpToLogin() {
-  localStorage.clear()
-  sessionStorage.clear()
-
-  let loginUrl = {
-    production: 'http://sso.dev.hzmantu.com/login/103',
-    opsproduction: 'http://sso.dev.hzmantu.com/login/1014',
-    development: 'http://sso.dev.hzmantu.com/login/1014'
-  }[process.env.NODE_ENV]
-
-  window.location.replace(loginUrl)
+// 获取服务器时间
+export function GetServerTime() {
+  var xmlHttp = false
+  //获取服务器时间
+  try {
+    xmlHttp = new window.ActiveXObject('Msxml2.XMLHTTP')
+  } catch (e) {
+    try {
+      xmlHttp = new window.ActiveXObject('Microsoft.XMLHTTP')
+    } catch (e2) {
+      xmlHttp = false
+    }
+  }
+  if (!xmlHttp && typeof XMLHttpRequest != 'undefined') {
+    xmlHttp = new XMLHttpRequest()
+  }
+  xmlHttp.open('GET', 'null.txt', false)
+  xmlHttp.setRequestHeader('Range', 'bytes=-1')
+  xmlHttp.send(null)
+  var severtime = new Date(xmlHttp.getResponseHeader('Date'))
+  return severtime.getTime()
 }

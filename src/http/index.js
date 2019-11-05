@@ -7,8 +7,8 @@ import store from '../vuex/store'
 // 环境的切换
 axios.defaults.baseURL = {
   production: '',
-  opsproduction: 'https://project-kids-v2.local.hzmantu.com/kids/admin',
-  development: 'https://project-kids-v2.local.hzmantu.com/kids/admin'
+  opsproduction: '',
+  development: ''
 }[process.env.NODE_ENV]
 
 //配置允许跨域携带cookie
