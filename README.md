@@ -1,6 +1,4 @@
-# himo-kids-manage-v2
 
-### 海马体儿童管理端2.0版本
 ## Project setup
 ```
 yarn install
